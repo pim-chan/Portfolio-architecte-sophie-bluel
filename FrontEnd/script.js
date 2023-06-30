@@ -20,28 +20,31 @@ async function getProjets(categoryFilter = null) {
   });
 }
 
-async function createFilterButtons() {
-  const response = await fetch("http://localhost:5678/api/works");
-  const data = await response.json();
+function createFilterButtons() {
+  fetch('http://localhost:5678/api/categories')
+  .then((res) => res.json())
+  .then((data) => {
+    const categories = data.map(element => element.name);
+    categories.unshift("Tous");
 
-  const categories = [...new Set(data.map((element) => element.category.name))];
-  categories.unshift("Tous");
+    const filterButtonsContainer = document.getElementById("filter-buttons");
 
-  const filterButtonsContainer = document.getElementById("filter-buttons");
-
-  categories.forEach((category) => {
-    const button = document.createElement("button");
-    button.innerText = category;
-    button.addEventListener("click", () => {
-      getProjets(category);
-    });
+    categories.forEach((category) => {
+      const button = document.createElement("button");
+      button.innerText = category;
+      button.addEventListener("click", () => {
+        getProjets(category);
+      });
     filterButtonsContainer.appendChild(button);
+    });
   });
 }
 
 createFilterButtons();
 
 getProjets();
+
+
 
 
 
