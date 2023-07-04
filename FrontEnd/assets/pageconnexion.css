@@ -5,40 +5,51 @@ h1, .login-form, form, .input-container {
 	display: flex;
 	flex-direction: column ;
 }
+a {
+	text-decoration: none;
+}
 body {
-	max-width: 1140px;
 	margin: auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 	background-color: #FFFEF8;
 }
+header, main {
+	max-width: 1140px;
+}
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px auto
 }
 h1{
+	margin: 0;
 	font-size: 22px;
 	font-weight: 800;
-	color: #B1663C
+	color: #B1663C;
 }
 h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
 }
-nav ul {
+nav {
+	margin: 0;
 	display: flex;
 	align-items: center;
-	list-style-type: none;
-
 }
-nav li {
+nav a {
 	padding: 0 10px;
 	font-size: 1.2em;
+	color: black;
 }
-
-li:hover {
+nav a:visited {
+	color: black;
+}
+nav a:nth-child(3) {
+	font-weight: bold;
+}
+nav a:hover {
 	color: #B1663C;
 }
 #login {
@@ -46,23 +57,16 @@ li:hover {
 	margin: 0 auto;
 }
 h2 {
-	margin: 0;
+	margin: 0 0 21px 0;
 	color: #1D6154;
 	font-size: 30px;
 	font-weight: 700;
 	text-align: center;
 }
-.login-form {
-	gap: 30px;
-	margin: 37px 0;
+label {
+	margin-bottom: 6px;
 }
-form {
-	align-items: center;
-}
-.input-container {
-	gap: 6px;
-}
-.input-container input {
+#email, #password {
 	width: 379px;
 	height: 51px;
 	border: none;
@@ -70,7 +74,18 @@ form {
 	flex-shrink: 0;
 	padding-left: 10px;
 }
+.input-container:nth-child(1) {
+	margin-bottom: 30px;
+}
+.error-msg {
+	height: 15.94px;
+	margin-top: 0;
+	text-align: center;
+    color: red;
+}
 .button-login {
+	display: block;
+	margin: 37px auto 28px;
 	width: 179px;
 	height: 36px;
 	margin-bottom: 28px;
@@ -80,19 +95,32 @@ form {
 	color: white;
 }
 .forgot-password {
+	display: block;
+	margin: 0 auto;
+	text-align: center;
 	color: #3D3D3D;
 	font-size: 14px;
 	text-decoration-line: underline;
 }
 footer {
+	width: 100%;
+	height: 80px;
+	display: flex;
+	justify-content: center;
 	position: fixed;
 	bottom: 0;
 	background-color: white;
-	width: 1140px;
 }
-footer nav ul {
-	padding: 0;
+footer nav {
+	max-width: 1140px;
+	width: 100%;
+	margin: 0 auto;
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+}
+footer li {
+	width: 100%;
+	margin-right: 28px;
+	font-size: 1.2em;
+	list-style-type: none;
 }

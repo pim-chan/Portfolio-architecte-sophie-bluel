@@ -34,6 +34,9 @@ body {
 ol, ul {
 	list-style: none;
 }
+a {
+	text-decoration: none;
+}
 blockquote, q {
 	quotes: none;
 }
@@ -70,12 +73,12 @@ h1{
 	color: #B1663C
 }
 h1 > span {
+	margin-top: 3px;
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
 }
-h2{
+h2 {
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
@@ -99,16 +102,20 @@ button:hover {
 	color: white;
 	background-color: #1D6154;
 }
-nav ul {
+nav {
 	display: flex;
 	align-items: center;
-	list-style-type: none;
 }
-nav li {
+nav a {
 	padding: 0 10px;
 	font-size: 1.2em;
+	color: black;
+	text-decoration: none;
 }
-li:hover {
+a:visited {
+	color: black;
+}
+a:hover {
 	color: #B1663C;
 }
 #introduction {
@@ -188,9 +195,13 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
-footer nav ul {
+footer nav {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
+}
+footer li {
+	padding: 0 10px;
+	font-size: 1.2em;
 }
 

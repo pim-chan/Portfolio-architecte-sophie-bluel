@@ -1,10 +1,12 @@
-async function getProjets(categoryFilter = null) {
+const getProjets = async(categoryFilter = null) =>  {
   const response = await fetch("http://localhost:5678/api/works");
   const data = await response.json();
 
   const gallery = document.querySelector(".gallery");
   gallery.innerHTML = "";
 
+  // (const element of data) {}
+  // for (let i = 0; i < data.length; i++) {const element = data[i]}
   data.forEach((element) => {
     if (categoryFilter === null || categoryFilter === "Tous" || element.category.name === categoryFilter) {
       const article = document.createElement('figure');
@@ -20,7 +22,7 @@ async function getProjets(categoryFilter = null) {
   });
 }
 
-function createFilterButtons() {
+createFilterButtons = () => {
   fetch('http://localhost:5678/api/categories')
   .then((res) => res.json())
   .then((data) => {
@@ -43,6 +45,10 @@ function createFilterButtons() {
 createFilterButtons();
 
 getProjets();
+
+
+
+
 
 
 

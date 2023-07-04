@@ -9,36 +9,29 @@
 </head>
 <body>
     <header>
-		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+		<a href="index.html"><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a>
 		<nav>
-			<ul>
-				<li>projets</li>
-				<li>contact</li>
-				<li>login</li>
-				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-			</ul>
+			<a href="#">projets</a>
+			<a href="#">contact</a>
+			<a href="pageconnexion.html">login</a>
+			<a href="#"><img src="./assets/icons/instagram.png" alt="Instagram"></a>
 		</nav>
 	</header>
     <main id="login">
         <h2>Log In</h2>
-        <form action="/login" method="post">
-            <div class="login-form">
-                <div class="input-container">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="input-container">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
+        <p class="error-msg"></p>
+        <form action="/login" method="post" class="login-form">
+            <div class="input-container">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
             </div>
-            <div>
-                <input type="submit" value="Se connecter" class="button-login">
+            <div class="input-container">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" required>
             </div>
-            <div>
-                <a href="/forgot-password" class="forgot-password">Mot de passe oublié?</a>
-            </div>
+            <input type="submit" value="Se connecter" class="button-login">  
         </form>
+        <a href="/forgot-password" class="forgot-password">Mot de passe oublié?</a>
     </main>
     <footer class="footer">
 		<nav>
@@ -47,5 +40,6 @@
 			</ul>
 		</nav>
 	</footer>
+    <script src="id.js"></script>
 </body>
 </html>
