@@ -51,15 +51,19 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	position: relative;
+	background: #FFFEF8;
+}
+.content-container {
+	max-width: 1140px;
+	margin: 0 auto;
 }
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	padding: 50px 0
 }
 section {
 	margin: 50px 0
@@ -83,24 +87,6 @@ h2 {
 	font-weight: 700;
 	font-size: 30px;
 	color: #1D6154
-}
-#filter-buttons {
-	margin: 51px 0;
-	display: flex;
-	justify-content: center;
-	gap: 10px;
-}
-button {
-	padding: 9px 15px;
-	font-family: 'Syne';
-	color: #1D6154;
-	background-color: transparent;
-	border-radius: 60px;
-	border: 1px solid #1D6154;
-}
-button:hover {
-	color: white;
-	background-color: #1D6154;
 }
 nav {
 	display: flex;
@@ -142,9 +128,35 @@ a:hover {
 #portfolio {
 	margin-top: 139px;
 }
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
+#portfolio .title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 31px;
+}
+#portfolio .title p {
+	color: black;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+#filter-buttons {
+	margin: 51px 0;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+#filter-buttons button {
+	padding: 9px 15px;
+	font-family: 'Syne';
+	color: #1D6154;
+	background-color: transparent;
+	border-radius: 60px;
+	border: 1px solid #1D6154;
+}
+#filter-buttons button:hover {
+	color: white;
+	background-color: #1D6154;
 }
 .gallery {
 	width: 100%;
@@ -185,7 +197,7 @@ a:hover {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-input[type="submit"]{
+#contact input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -195,13 +207,114 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
+footer {
+	background-color: #FFF;
+}
 footer nav {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	padding: 2em
 }
 footer li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
+.modal-box {
+	display: none;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	background: rgba(0, 0, 0, 0.30);
+}
+
+.active {
+	display: block;
+
+}
+.modal {
+	position: relative;
+	margin: 0 auto;
+	padding: 60px 100px 48px;
+	width: 430px;
+	height: 531px;
+	border-radius: 10px;
+	background: #FFF;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.close-modal {
+	position: absolute;
+	top: 26px;
+	right: 30px;
+}
+
+.modal h3 {
+	color: #000;
+	text-align: center;
+	font-size: 26px;
+	font-family: Work Sans;
+	font-weight: 400;
+}
+.line {
+	width: 420px;
+	height: 1px;
+	margin-top: 47px;
+	background: #B3B3B3;
+}
+.modal .button-add {
+	width: 237px;
+	height: 36px;
+	font-size: 14px;
+	font-family: Syne;
+	font-weight: 700;
+	border-radius: 60px;
+	border: none;
+	background: #1D6154;
+	color: #FFF;
+	margin: 38px 0 23px;
+}
+
+.modal .button-delete {
+	border: none;
+	background-color: transparent;
+	color: #D65353;
+	font-size: 14px;
+	font-family: Syne;
+	font-weight: 400;
+}
+
+/* ADMIN MODE */
+
+#edit-bar {
+	margin: 0;
+}
+#edit-bar div {
+	height: 59px;
+	background: #000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 21px;
+}
+#edit-bar p {
+	color: #FFF;
+	display: flex;
+	align-items: center;
+	gap: 9px;
+}
+#edit-bar button {
+	width: 216px;
+	height: 38px;
+	border-radius: 60px;
+	background: #FFF;
+	color: #000;
+	border: none;
+	font-family: Work Sans;
+	font-size: 14px;
+	font-weight: 500;
+}
+
 
