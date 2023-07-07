@@ -5,8 +5,6 @@ const getProjets = async(categoryFilter = null) =>  {
   const gallery = document.querySelector(".gallery");
   gallery.innerHTML = "";
 
-  // (const element of data) {}
-  // for (let i = 0; i < data.length; i++) {const element = data[i]}
   data.forEach((element) => {
     if (categoryFilter === null || categoryFilter === "Tous" || element.category.name === categoryFilter) {
       const article = document.createElement('figure');

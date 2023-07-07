@@ -260,15 +260,26 @@ footer li {
 	font-family: Work Sans;
 	font-weight: 400;
 }
+.gallery-modal {
+	margin: 47px 0;
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	gap: 12px;
+}
+.gallery-modal img {
+	width: 100%;
+}
+.gallery-modal figcaption {
+	font-size: 0.75em;
+}
 .modal .line {
 	width: 420px;
-	height: 1px;
-	margin-top: 47px;
-	background: #B3B3B3;
+	border: 1px solid #B3B3B3;
 }
 .modal .button-add {
 	width: 237px;
-	height: 36px;
+	padding: 10px 0;
 	font-size: 14px;
 	font-family: Syne;
 	font-weight: 700;

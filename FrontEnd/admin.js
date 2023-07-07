@@ -30,12 +30,7 @@ const adminModeContent = () => {
 
   portfolioTitle.appendChild(modalLink);
 
-  // const introductionSection = document.getElementById('introduction');
-  // const portfolioArticle = introductionSection.childNodes[2]
-  // introductionSection.insertBefore(modalLink, portfolioArticle.nextSibling)
-
   modalLink.addEventListener('click', modaleCreation)
-
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -47,6 +42,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+const getProjetsModal = async() =>  {
+  const response = await fetch("http://localhost:5678/api/works");
+  const data = await response.json();
+
+  const galleryModal = document.createElement("div");
+  galleryModal.classList.add('gallery-modal')
+
+  data.forEach((element) => {
+    const article = document.createElement('figure');
+    const imgElement = document.createElement('img');
+    imgElement.src = element.imageUrl;
+    const titleElement = document.createElement('figcaption');
+    titleElement.textContent = "éditer"; 
+
+      article.appendChild(imgElement);
+      article.appendChild(titleElement);
+      galleryModal.appendChild(article);
+    });
+
+  const modalBox = document.querySelector('.modal')
+  const divLine = document.querySelector(".line")
+  modalBox.insertBefore(galleryModal, divLine)
+
+}
+
   const modaleCreation = () => {
     const body = document.querySelector('body')
     const modalBox = document.createElement('section')
@@ -56,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.classList.add('modal')
   
     const closeIcon = document.createElement('img')
-    closeIcon.src = ''
+    closeIcon.src = "./assets/icons/close.png"
     closeIcon.classList.add('icon-close', 'modal-trigger')
   
     const modalTitle = document.createElement('h3')
@@ -82,6 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.appendChild(divLine)
     modal.appendChild(inputAddPhoto)
     modal.appendChild(inputDeleteGallery)
+
+    getProjetsModal();
   }
   
   // toggleModal = () => {
@@ -93,23 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
   //   modaleTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal));
   // }
 
-  const getProjetsModal = async() =>  {
-    const response = await fetch("http://localhost:5678/api/works");
-    const data = await response.json();
-  
-    const gallery = document.createElement("div");
-
-  
-    // (const element of data) {}
-    // for (let i = 0; i < data.length; i++) {const element = data[i]}
-    data.forEach((element) => {
-        const article = document.createElement('figure');
-        const imgElement = document.createElement('img');
-        imgElement.src = element.imageUrl;
-  
-        article.appendChild(imgElement);
-        article.appendChild(titleElement);
-        gallery.appendChild(article);
-      }
-    );
-  }
+  // const introductionSection = document.getElementById('introduction');
+  // const portfolioArticle = introductionSection.childNodes[2]
+  // introductionSection.insertBefore(modalLink, portfolioArticle.nextSibling)
