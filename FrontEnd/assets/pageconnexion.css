@@ -57,7 +57,7 @@ nav a:hover {
 	margin: 0 auto;
 }
 h2 {
-	margin: 0 0 21px 0;
+	margin: 0 0 37px 0;
 	color: #1D6154;
 	font-size: 30px;
 	font-weight: 700;
@@ -79,13 +79,13 @@ label {
 }
 .error-msg {
 	height: 15.94px;
-	margin-top: 0;
+	margin: 30px 0 0;
 	text-align: center;
     color: red;
 }
 .button-login {
 	display: block;
-	margin: 37px auto 28px;
+	margin: 32px auto 28px;
 	width: 179px;
 	height: 36px;
 	margin-bottom: 28px;
