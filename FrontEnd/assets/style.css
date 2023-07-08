@@ -235,9 +235,9 @@ footer li {
 }
 .modal {
 	margin: 0 auto;
-	padding: 60px 100px 48px;
-	width: 430px;
-	height: 531px;
+	padding: 60px 80px 48px;
+	width: 330px;
+	height: 510px;
 	position: sticky;
 	top: 50%;
 	transform: translateY(-50%);
@@ -256,38 +256,55 @@ footer li {
 .modal h3 {
 	color: #000;
 	text-align: center;
-	font-size: 26px;
+	font-size: 24px;
 	font-family: Work Sans;
 	font-weight: 400;
 }
 .gallery-modal {
-	margin: 47px 0;
+	margin: 40px 0;
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	gap: 12px;
+	grid-row-gap: 12px;
+	grid-column-gap: 7px;
 }
-.gallery-modal img {
+.project-container {
+	position: relative;
+}
+.gallery-modal-img {
 	width: 100%;
+}
+.modal-img-icon {
+	position: absolute;
+	top: 3px;
+	border-radius: 2px;
+}
+.trash-can-icon {
+	background-color: #000;
+	right: 3px;
+	padding: 2px 3px;
+}
+.move-icon {
+	right: 21px;
+	height: 15px;
 }
 .gallery-modal figcaption {
 	font-size: 0.75em;
 }
 .modal .line {
-	width: 420px;
+	width: 100%;
 	border: 1px solid #B3B3B3;
 }
 .modal .button-add {
 	width: 237px;
 	padding: 10px 0;
-	font-size: 14px;
 	font-family: Syne;
 	font-weight: 700;
 	border-radius: 60px;
 	border: none;
 	background: #1D6154;
 	color: #FFF;
-	margin: 38px 0 23px;
+	margin: 30px 0 23px;
 }
 .modal .button-delete {
 	border: none;

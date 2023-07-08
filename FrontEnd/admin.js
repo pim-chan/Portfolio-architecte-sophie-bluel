@@ -50,21 +50,33 @@ const getProjetsModal = async() =>  {
   galleryModal.classList.add('gallery-modal')
 
   data.forEach((element) => {
-    const article = document.createElement('figure');
+    const projectContainer = document.createElement('figure');
+    projectContainer.classList.add('project-container')
     const imgElement = document.createElement('img');
     imgElement.src = element.imageUrl;
+    imgElement.classList.add('gallery-modal-img')
     const titleElement = document.createElement('figcaption');
-    titleElement.textContent = "éditer"; 
-
-      article.appendChild(imgElement);
-      article.appendChild(titleElement);
-      galleryModal.appendChild(article);
-    });
-
+    titleElement.textContent = "éditer";
+    const iconDelete = document.createElement('img')
+    iconDelete.src = './assets/icons/trash-can.svg'
+    iconDelete.classList.add('modal-img-icon', 'trash-can-icon')
+    
+    projectContainer.appendChild(iconDelete)
+    projectContainer.appendChild(imgElement);
+    projectContainer.appendChild(titleElement);
+    galleryModal.appendChild(projectContainer);
+  });
+  
+ const firstProject = galleryModal.childNodes[0]
+ const firstIconDelete = firstProject.firstChild
+ const iconMove = document.createElement('img')
+ iconMove.src = './assets/icons/move.svg'
+ iconMove.classList.add('modal-img-icon', 'move-icon')
+ firstProject.insertBefore(iconMove, firstIconDelete)
+  
   const modalBox = document.querySelector('.modal')
   const divLine = document.querySelector(".line")
   modalBox.insertBefore(galleryModal, divLine)
-
 }
 
   const modaleCreation = () => {
