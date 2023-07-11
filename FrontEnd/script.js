@@ -24,7 +24,7 @@ createFilterButtons = () => {
   fetch('http://localhost:5678/api/categories')
   .then((res) => res.json())
   .then((data) => {
-    const categories = data.map(element => element.name);
+    const categories = data.map(category => category.name);
     categories.unshift("Tous");
 
     const filterButtonsContainer = document.getElementById("filter-buttons");
@@ -43,6 +43,9 @@ createFilterButtons = () => {
 createFilterButtons();
 
 getProjets();
+
+
+
 
 
 

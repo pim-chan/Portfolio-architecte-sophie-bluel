@@ -20,6 +20,7 @@ fetch("http://localhost:5678/api/users/login", {
   })
   .catch(error => {
     const errorMsg = document.createElement('p')
+    errorMsg.innerHTML = ''
     errorMsg.textContent = "Votre e-mail/mot de passe est incorrect";
     errorMsg.classList.add('error-msg')
     const loginForm = document.querySelector('.login-form')
