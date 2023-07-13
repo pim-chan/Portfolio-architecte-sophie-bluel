@@ -8,6 +8,7 @@ const getProjets = async(categoryFilter = null) =>  {
   data.forEach((element) => {
     if (categoryFilter === null || categoryFilter === "Tous" || element.category.name === categoryFilter) {
       const article = document.createElement('figure');
+      article.setAttribute('data-project-id', element.id);
       const imgElement = document.createElement('img');
       imgElement.src = element.imageUrl;
       const titleElement = document.createElement('figcaption');
@@ -27,12 +28,12 @@ createFilterButtons = () => {
     const categories = data.map(category => category.name);
     categories.unshift("Tous");
 
-    const filterButtonsContainer = document.getElementById("filter-buttons");
+    const filterButtonsContainer = document.getElementById('filter-buttons');
 
     categories.forEach((category) => {
-      const button = document.createElement("button");
+      const button = document.createElement('button');
       button.innerText = category;
-      button.addEventListener("click", () => {
+      button.addEventListener('click', () => {
         getProjets(category);
       });
     filterButtonsContainer.appendChild(button);
