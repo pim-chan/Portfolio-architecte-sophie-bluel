@@ -1,13 +1,7 @@
-// import {addProject, modaleCreation, closeModal, getProjetsModal, deleteProject } from './modale';
+const dataJson = JSON.parse(localStorage.getItem('authToken'));
+const token = dataJson.token;
 
-// addProject();
-// modaleCreation();
-// closeModal();
-// getProjetsModal();
-// deleteProject()
-
-// Mode Admin
-const adminModeContent = () => {
+const adminModeContent = async () => {
   const body = document.querySelector('body');
   const topBar = document.createElement('section');
   topBar.setAttribute('id', 'edit-bar');
@@ -36,19 +30,7 @@ const adminModeContent = () => {
   showModalText.insertBefore(showModalIcon, showModalText.firstChild);
   portfolioTitle.appendChild(showModal);
 
-  showModal.addEventListener('click', modaleCreation);
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-  const idUser = JSON.parse(localStorage.getItem('authToken'));
-  if (idUser) {
-    adminModeContent();
-  }
-});
-
-// Création de la modale 
-const modaleCreation = async () => {
-  const body = document.querySelector('body');
+  /* Creation of the modal element */
   const modalContainer = document.createElement('section');
   modalContainer.classList.add('modal-box');
 
@@ -76,9 +58,8 @@ const modaleCreation = async () => {
   inputSubmitProject.value = 'Ajouter une photo';
   inputSubmitProject.classList.add('input-submit', 'button-add');
   inputSubmitProject.addEventListener('click', () => {
+    document.querySelector('.add-photo-form').style.display = "block";
     modalEditGallery.style.display = "none";
-    const addPhotoGallery = addProject()
-    modal.appendChild(addPhotoGallery)
 })
 
   const inputDeleteGallery = document.createElement('input');
@@ -97,9 +78,29 @@ const modaleCreation = async () => {
   modalEditGallery.appendChild(inputDeleteGallery);
 
   const modalGallery = await getProjetsModal();
-  modalEditGallery.insertBefore(modalGallery, divLine);
+  document.querySelector('.modal-edit-gallery').insertBefore(modalGallery, document.querySelector('.line'));
 
-  closeModal(modalContainer);
+  const addPhotoGallery = addProject();
+  document.querySelector('.modal').appendChild(addPhotoGallery);
+
+  modalContainer.style.display = "none";
+
+  /* Event of open modal */
+  showModal.addEventListener('click', modaleCreation);
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (token) {
+    adminModeContent();
+  }
+});
+
+// Création de la modale 
+const modaleCreation = async () => {
+  document.querySelector('.modal-box').style.display = "block";
+  document.querySelector('.modal-edit-gallery').style.display = "";
+  document.querySelector('.add-photo-form').style.display = "none";
+  closeModal(document.querySelector('.modal-box'));
 };
 
 //Fermer la modale
@@ -107,7 +108,10 @@ const closeModal = (modalContainer) => {
   const modalTriggers = document.querySelectorAll('.modal-trigger');
   modalTriggers.forEach((trigger) => {
     trigger.addEventListener('click', () => {
-      modalContainer.classList.add('close-modal');
+      //modalContainer.classList.add('close-modal');
+      modalContainer.style.display = "none";
+      document.querySelector('.modal-edit-gallery').style.display = "";
+      document.querySelector('.add-photo-form').style.display = "none";
     });
   });
 };
@@ -134,7 +138,8 @@ const getProjetsModal = async () => {
     projectIconDelete.src = './assets/icons/trash-can.svg';
     projectIconDelete.classList.add('modal-img-icon', 'trash-can-icon');
 
-    projectIconDelete.addEventListener('click', () => {
+    projectIconDelete.addEventListener('click', (e) => {
+      e.preventDefault();
       const projectId = element.id; 
       const confirmDelete = confirm("Êtes-vous sûr de vouloir supprimer ce projet ?");
       if (confirmDelete) {
@@ -166,8 +171,8 @@ const addProject = () => {
 
   const modalEditGallery = document.querySelector('.modal-edit-gallery')
   arrowLeft.addEventListener('click', () => {
+    modalEditGallery.style.display = "";
     modalAddProjectForm.style.display = "none";
-    modalEditGallery.style.removeProperty('display')
   });
 
   const modalAddProjectForm = document.createElement('form');
@@ -191,6 +196,7 @@ const addProject = () => {
   const inputAddImg = document.createElement('input');
   inputAddImg.type = "file";
   inputAddImg.setAttribute('id', 'add-photo-input');
+  inputAddImg.required = true
 
   const addPhotoText = document.createElement('p');
   addPhotoText.textContent = "jpg, png : 4mo max";
@@ -226,7 +232,7 @@ const addProject = () => {
   const inputTitle = document.createElement('input');
   inputTitle.type = "text";
   inputTitle.setAttribute('id', 'add-photo-input-title');
-
+  inputTitle.required = true
 
   // Input Category
   const inputCategoryContainer = document.createElement('div');
@@ -239,13 +245,14 @@ const addProject = () => {
 
   const inputCategory = document.createElement('select');
   inputCategory.setAttribute('id', 'add-photo-input-category');
+  inputCategory.required = true
 
   fetch('http://localhost:5678/api/categories')
       .then(response => response.json())
       .then(data => {
         data.forEach(category => {
           const option = document.createElement('option');
-          option.value = category.name; 
+          option.value = category.id; 
           option.textContent = category.name;
           inputCategory.appendChild(option);
         });
@@ -293,8 +300,8 @@ const addProject = () => {
   inputTitle.addEventListener('input', checkFormValidity);
   inputCategory.addEventListener('input', checkFormValidity);
 
-  inputSubmitProject.addEventListener('click', (event) => {
-    event.preventDefault();
+  inputSubmitProject.addEventListener('click', (e) => {
+    e.preventDefault();
 
   if (inputAddImg.files.length === 0 || inputTitle.value === '' || inputCategory.value === '') {
     alert("Veuillez remplir tous les champs du formulaire.");
@@ -302,16 +309,16 @@ const addProject = () => {
   }
 
   const formData = new FormData();
-  formData.append('photo', inputAddImg.files[0]);
+  formData.append('image', inputAddImg.files[0]);
   formData.append('title', inputTitle.value);
-  formData.append('category', inputCategory.value);
+  formData.append('category', parseInt(inputCategory.value));
 
-  const token = localStorage.getItem('authToken')
   fetch('http://localhost:5678/api/works', {
-    method: 'POST',
-    body: formData,
-    Accept: '*/*',
-    Authorization: `Bearer ${token}`
+    'method': 'POST',
+    'headers': {
+      'Authorization': `Bearer ${token}`,
+    },
+    'body': formData,
   })
   .then(response => {
     if (response.ok) {
@@ -328,13 +335,15 @@ const addProject = () => {
 }
 
 // Supprimer un projet 
-const token = localStorage.getItem('authToken')
+console.log(token);
 const deleteProject = async (projectId, token) => {
   try {
     const response = await fetch(`http://localhost:5678/api/works/${projectId}`, {
-      method: 'DELETE',
-      Accept: '*/*',
-      Authorization: `Bearer ${token}`
+      'method': 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
     });
 
     if (response.ok) {
