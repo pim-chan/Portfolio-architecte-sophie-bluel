@@ -141,13 +141,13 @@ a:hover {
 	gap: 8px;
 	cursor: pointer;
 }
-#filter-buttons {
+#buttons-container {
 	margin: 51px 0;
 	display: flex;
 	justify-content: center;
 	gap: 10px;
 }
-#filter-buttons button {
+#buttons-container button {
 	padding: 9px 15px;
 	font-family: 'Syne';
 	color: #1D6154;
@@ -155,7 +155,7 @@ a:hover {
 	border-radius: 60px;
 	border: 1px solid #1D6154;
 }
-#filter-buttons button:hover {
+#buttons-container button:hover {
 	color: white;
 	background-color: #1D6154;
 }

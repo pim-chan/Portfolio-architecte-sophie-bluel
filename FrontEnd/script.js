@@ -1,4 +1,4 @@
-const getProjets = async(categoryFilter = null) =>  {
+const getProjects = async(categoryFilter = null) =>  {
   const response = await fetch("http://localhost:5678/api/works");
   const data = await response.json();
 
@@ -13,7 +13,6 @@ const getProjets = async(categoryFilter = null) =>  {
       imgElement.src = element.imageUrl;
       const titleElement = document.createElement('figcaption');
       titleElement.innerText = element.title; 
-
       article.appendChild(imgElement);
       article.appendChild(titleElement);
       gallery.appendChild(article);
@@ -28,14 +27,13 @@ createFilterButtons = () => {
     const categories = data.map(category => category.name);
     categories.unshift("Tous");
 
-    const filterButtonsContainer = document.getElementById('filter-buttons');
-
     categories.forEach((category) => {
       const button = document.createElement('button');
       button.innerText = category;
       button.addEventListener('click', () => {
-        getProjets(category);
+        getProjects(category);
       });
+    const filterButtonsContainer = document.getElementById('buttons-container');
     filterButtonsContainer.appendChild(button);
     });
   });
@@ -43,7 +41,7 @@ createFilterButtons = () => {
 
 createFilterButtons();
 
-getProjets();
+getProjects();
 
 
 

@@ -30,7 +30,7 @@ const adminModeContent = async () => {
   showModalText.insertBefore(showModalIcon, showModalText.firstChild);
   portfolioTitle.appendChild(showModal);
 
-  /* Creation of the modal element */
+  // Création de la modale 
   const modalContainer = document.createElement('section');
   modalContainer.classList.add('modal-box');
 
@@ -85,7 +85,7 @@ const adminModeContent = async () => {
 
   modalContainer.style.display = "none";
 
-  /* Event of open modal */
+  // Ouverture modale 
   showModal.addEventListener('click', modaleCreation);
 };
 
@@ -95,8 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Création de la modale 
-const modaleCreation = async () => {
+// Affichage modale  
+const modaleCreation = () => {
   document.querySelector('.modal-box').style.display = "block";
   document.querySelector('.modal-edit-gallery').style.display = "";
   document.querySelector('.add-photo-form').style.display = "none";
@@ -108,10 +108,7 @@ const closeModal = (modalContainer) => {
   const modalTriggers = document.querySelectorAll('.modal-trigger');
   modalTriggers.forEach((trigger) => {
     trigger.addEventListener('click', () => {
-      //modalContainer.classList.add('close-modal');
       modalContainer.style.display = "none";
-      document.querySelector('.modal-edit-gallery').style.display = "";
-      document.querySelector('.add-photo-form').style.display = "none";
     });
   });
 };
@@ -163,7 +160,32 @@ const getProjetsModal = async () => {
   return modalGallery;
 };
 
-// Ajouter un projet 
+// Supprimer un projet 
+const deleteProject = async (projectId, token) => {
+  try {
+    const response = await fetch(`http://localhost:5678/api/works/${projectId}`, {
+      'method': 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      console.log('Projet supprimé avec succès');
+      const projectElement = document.querySelector(`[data-project-id="${projectId}"]`);
+      if (projectElement) {
+        projectElement.remove();
+      }
+    } else {
+      console.error('Une erreur s\'est produite lors de la suppression du projet');
+    }
+  } catch (error) {
+    console.error('Une erreur s\'est produite lors de la suppression du projet', error);
+  }
+};
+
+// Ajouter un projet via la modale
 const addProject = () => {
   const arrowLeft = document.createElement('img');
   arrowLeft.src = "./assets/icons/arrow-left.svg"
@@ -334,31 +356,7 @@ const addProject = () => {
   return modalAddProjectForm;
 }
 
-// Supprimer un projet 
-console.log(token);
-const deleteProject = async (projectId, token) => {
-  try {
-    const response = await fetch(`http://localhost:5678/api/works/${projectId}`, {
-      'method': 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    });
 
-    if (response.ok) {
-      console.log('Projet supprimé avec succès');
-      const projectElement = document.querySelector(`[data-project-id="${projectId}"]`);
-      if (projectElement) {
-        projectElement.remove();
-      }v
-    } else {
-      console.error('Une erreur s\'est produite lors de la suppression du projet');
-    }
-  } catch (error) {
-    console.error('Une erreur s\'est produite lors de la suppression du projet', error);
-  }
-};
 
 
 

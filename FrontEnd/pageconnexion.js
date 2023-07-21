@@ -1,10 +1,10 @@
 const loginForm = document.querySelector(".login-form");
-loginForm.addEventListener("submit", function (event) {
-  event.preventDefault();
+loginForm.addEventListener("submit", function (e) {
+  e.preventDefault();
 
   const loginData = {
-      email: event.target.querySelector("[name=email]").value,
-      password: event.target.querySelector("[name=password]").value,
+      email: e.target.querySelector("[name=email]").value,
+      password: e.target.querySelector("[name=password]").value,
   };
 
 fetch("http://localhost:5678/api/users/login", {
