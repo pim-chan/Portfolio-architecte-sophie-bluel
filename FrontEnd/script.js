@@ -1,4 +1,4 @@
-const getProjects = async(categoryFilter = null) =>  {
+const getProjects = async(category = null) =>  {
   const response = await fetch("http://localhost:5678/api/works");
   const data = await response.json();
 
@@ -6,7 +6,7 @@ const getProjects = async(categoryFilter = null) =>  {
   gallery.innerHTML = "";
 
   data.forEach((element) => {
-    if (categoryFilter === null || categoryFilter === "Tous" || element.category.name === categoryFilter) {
+    if (category === null || category === "Tous" || element.category.name === category) {
       const article = document.createElement('figure');
       article.setAttribute('data-project-id', element.id);
       const imgElement = document.createElement('img');
